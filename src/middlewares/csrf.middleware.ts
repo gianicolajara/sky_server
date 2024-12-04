@@ -10,7 +10,7 @@ export class CsrfMiddleware {
     cookieOptions: {
       httpOnly: true,
       secure: ServerProcess.ENV_MODE === "production",
-      sameSite: "lax",
+      sameSite: "strict",
       path: "/",
     },
   });
