@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String     @id
+  name             String     @db.VarChar(100)
+  lastname         String     @db.VarChar(100)
+  username         String     @unique @db.VarChar(100)
+  registrationDate DateTime   @default(now())
+  email            String     @unique @db.VarChar(100)
+  password         String     @db.VarChar(100)
+  avatar           String?    @db.VarChar(255)
+  isPremium        Int        @default(0) @db.Int
+  posts            Post[]
+  comments         Comment[]
+  likes            LikePost[]
+  followers        Follow[]   @relation("user_follower")
+  following        Follow[]   @relation("user_following")
+}
+
+model Post {
+  id        String      @id
+  title     String      @db.VarChar(100)
+  content   String      @db.VarChar(100)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  author    User        @relation(fields: [authorId], references: [id])
+  authorId  String
+  comments  Comment[]
+  likes     LikePost[]
+  postMedia PostMedia[]
+}
+
+model Comment {
+  id        String   @id
+  content   String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+}
+
+model LikePost {
+  id       String @id
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+  post     Post   @relation(fields: [postId], references: [id])
+  postId   String
+
+  @@unique([authorId, postId], name: "author_post_unique")
+}
+
+model Follow {
+  id         String @id
+  follower   User   @relation("user_follower", fields: [followerId], references: [id])
+  followerId String
+  following  User   @relation("user_following", fields: [followedId], references: [id])
+  followedId String
+
+  @@unique([followerId, followedId], name: "follower_following_unique")
+}
+
+model PostMedia {
+  id        String   @id
+  path      String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+}
