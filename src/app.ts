@@ -42,7 +42,7 @@ if (app.get("env") === "production") {
 
 app.use(
   cors({
-    origin: "",
+    origin: process.env.ORIGIN,
     credentials: true,
   })
 );
