@@ -76,3 +76,9 @@ model PostMedia {
   post      Post     @relation(fields: [postId], references: [id])
   postId    String
 }
+
+model sessions {
+  session_id String @id @db.VarChar(128)
+  expires    Int
+  data       String @db.MediumText
+}
