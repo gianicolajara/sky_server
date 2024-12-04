@@ -12,7 +12,7 @@ export class SessionConfig {
       cookie: {
         secure: ServerProcess.ENV_MODE === "production",
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "strict",
+        sameSite: "none",
         httpOnly: true,
         path: "/",
       },
