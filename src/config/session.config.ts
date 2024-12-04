@@ -10,7 +10,7 @@ export class SessionConfig {
       },
       secret: ServerProcess.SESSION_SECRET,
       cookie: {
-        secure: ServerProcess.ENV_MODE === "production",
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000,
         sameSite: "none",
         httpOnly: true,
