@@ -119,8 +119,10 @@ export class AuthController extends AuthControllerRepository {
         req.session.destroy((err) => {
           if (err) next(err);
 
-          //clear cookies
-          res.clearCookie("sky_session");
+          res.clearCookie("sky_session", {
+            path: "/",
+            domain: process.env.DOMAIN,
+          });
 
           res
             .status(200)
