@@ -14,6 +14,7 @@ export class SessionConfig {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 1000 * 60 * 60 * 24 * 365,
+        domain: process.env.DOMAIN,
       },
       store: sessionStore,
       resave: true,
