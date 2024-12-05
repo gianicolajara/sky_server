@@ -53,7 +53,7 @@ app.use(
     extended: false,
   })
 );
-app.use(cookieParser(ServerProcess.COOKIE_SECRET));
+app.use(cookieParser());
 app.use(session(sess));
 app.use(
   helmet({
