@@ -27,7 +27,10 @@ export class AuthGuard {
         //delete cookies frotend
         req.cookies["sky_session"] = undefined;
 
-        res.clearCookie("sky_session");
+        res.clearCookie("sky_session", {
+          path: "/",
+          domain: process.env.DOMAIN,
+        });
 
         res.status(401).json({
           message: ErrorHelper.unauthorized("Unauthorized").message,
