@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "start": "node dist/index.js",
-    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
+    "start": "dotenv -e .env.development node dist/index.js",
+    "dev": "dotenv -e .env.development nodemon -r tsconfig-paths/register src/index.ts",
     "prisma:generate:test": "dotenv -e .env.test -- npx prisma migrate dev --name init",
     "prisma:generate:dev": "dotenv -e .env.development -- npx prisma migrate dev --name init",
     "prisma:generate:prod": "dotenv -e .env.production -- npx prisma migrate dev --name init",
