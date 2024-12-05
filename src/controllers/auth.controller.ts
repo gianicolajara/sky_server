@@ -59,6 +59,8 @@ export class AuthController extends AuthControllerRepository {
             ...user,
             password: undefined,
           };
+          /* 
+          res.cookie("sky_session", req.session.id, { httpOnly: true }); */
 
           res
             .status(200)

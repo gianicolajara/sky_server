@@ -9,9 +9,9 @@ export class CsrfMiddleware {
     cookieName: "csrftoken",
     cookieOptions: {
       httpOnly: true,
-      secure: true,
-      sameSite: "lax",
-      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 1000 * 60 * 60 * 24 * 365,
     },
   });
 
