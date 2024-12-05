@@ -9,7 +9,7 @@ export class CsrfMiddleware {
     cookieName: "csrftoken",
     cookieOptions: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "lax",
       path: "/",
     },
