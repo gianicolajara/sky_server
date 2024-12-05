@@ -10,6 +10,15 @@ import path from "path";
 import { fileExistsSync } from "tsconfig-paths/lib/filesystem";
 
 export class UploadFileMiddleware {
+  /**
+   * Uploads a file to the specified destination
+   *
+   * @param {string} dest - The destination folder to upload the file to
+   * @param {string} field - The field name to upload the file as
+   * @param {Request} req - The express request object
+   * @param {Response} res - The express response object
+   * @param {NextFunction} next - The express next function
+   */
   static async uploadFile(
     dest: string,
     field: string,
@@ -62,6 +71,14 @@ export class UploadFileMiddleware {
     });
   }
 
+  /**
+   * Uploads multiple files to the given destination folder
+   * @param dest Destination folder
+   * @param field Field name in the form
+   * @param req Express request
+   * @param res Express response
+   * @param next Express next callback
+   */
   static async uploadFiles(
     dest: string,
     field: string,

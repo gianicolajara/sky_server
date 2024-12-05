@@ -1,6 +1,10 @@
 import { Request } from "express";
 import { AnyZodObject, z } from "zod";
 
+/**
+ * Helper class for Zod validation
+ *
+ */
 export class ZodHelper {
   static validateSchema = <T extends AnyZodObject>(
     schema: T,

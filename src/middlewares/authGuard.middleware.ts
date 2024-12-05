@@ -3,6 +3,13 @@ import { UrlHelper } from "@helpers/url.helper";
 import { NextFunction, Request, Response } from "express";
 
 export class AuthGuard {
+  /**
+   * Middleware to check if the user is authenticated
+   * @param req - Express request object
+   * @param res - Express response object
+   * @param next - Express next middleware function
+   * @returns a 401 response if the user is not authenticated
+   */
   static isAuthenticated(req: Request, res: Response, next: NextFunction) {
     try {
       const { userId, jwt } = req.session;

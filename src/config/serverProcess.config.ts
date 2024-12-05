@@ -37,20 +37,6 @@ export class ServerProcess {
     this.DB_USER = process.env.DB_USER ?? "db_user";
     this.DB_HOST = process.env.DB_HOST ?? "localhost";
     this.CSRF_SECRET = process.env.CSRF_SECRET ?? "secret";
-
-    console.log({
-      ENV_MODE: this.ENV_MODE,
-      PORT: this.PORT,
-      JWT_SECRET: this.JWT_SECRET,
-      COOKIE_SECRET: this.COOKIE_SECRET,
-      SESSION_SECRET: this.SESSION_SECRET,
-      DB_NAME: this.DB_NAME,
-      DB_PASSWORD: this.DB_PASSWORD,
-      DB_PORT: this.DB_PORT,
-      DB_USER: this.DB_USER,
-      DB_HOST: this.DB_HOST,
-      CSRF_SECRET: this.CSRF_SECRET,
-    });
   };
 
   private static dotenvConfig = () => {
